@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const CardContainer = styled.article`
-    border: 1px solid red;
     width: 300px;
     display: flex;
     flex-direction: column;
     background-color: var(--color-12);
+    box-shadow: 6px 6px 6px 3px rgba(38, 53, 75, 0.3);
 `
 
 export const ImgContainer = styled.div`
@@ -38,7 +38,7 @@ export const StatusInfo = styled.p`
 
 export const NameCharacter = styled.h1`
     text-align: center;
-    color: var(--color-11);
+    color: var(--color-14);
     margin: 0;
     font-size: 1.8rem;
     font-weight: 600;
@@ -60,5 +60,5 @@ export const DetailsItem = styled.div`
     height: 30px;
     justify-content: space-between;
     align-items: center;
-    color: var(--color-11);
+    color: var(--color-14);
 `
