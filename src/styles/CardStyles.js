@@ -2,15 +2,24 @@ import styled from 'styled-components'
 
 export const CardContainer = styled.article`
     width: 300px;
+    height: 550px;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-12);
-    box-shadow: 6px 6px 6px 3px rgba(38, 53, 75, 0.3);
+    background-color: var(--color-13);
+    box-shadow: 6px 6px 6px 3px rgba(0, 0, 0, 0.3);
 `
 
 export const ImgContainer = styled.div`
+    max-width: 100%;
+    overflow: hidden;
     position: relative;
 `
+
+export const ImgCard = styled.img`
+    width: 100%;
+    vertical-align: top;
+`
+
 export const StatusDiv = styled.div`
     position: absolute;
     top: 15px;

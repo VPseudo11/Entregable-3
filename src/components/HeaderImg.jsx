@@ -1,21 +1,22 @@
 import React from 'react'
-import img1 from '../assets/rickmorty1.jpg'
-import img2 from '../assets/rickmorty2.jpg'
-import img3 from '../assets/rickmorty3.jpg'
-import img4 from '../assets/rickmorty4.jpg'
-import img5 from '../assets/rickmorty5.jpg'
-import img6 from '../assets/rickmorty6.jpg'
+import styled from 'styled-components'
 
-const HeaderImg = () => {
-    const images = [img1, img2, img3, img4, img5, img6]
-    const getRandomImage = () => {
-        return Math.floor(Math.random() * 7)
-    }
+
+const HeaderImg = ({image}) => {
     return (
-        <div>
-            <img src={images[getRandomImage()]} alt="" />
-        </div>
+        <ImgContainer>
+            <ImgCard src={image} alt="" />
+        </ImgContainer>
     )
 }
 
+const ImgContainer = styled.div`
+  min-width: 100%;
+  width: 100%;
+  overflow: hidden;
+`
+
+export const ImgCard = styled.img`
+    width: 100%;
+`
 export default HeaderImg

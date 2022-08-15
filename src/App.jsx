@@ -1,32 +1,56 @@
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import CardSection from './components/CardSection'
 import HeaderImg from './components/HeaderImg'
 import Location from './components/Location'
 import ResidentCard from './components/ResidentCard'
+import Search from './components/Search'
 import useFetch from './hooks/useFetch'
 
+import img1 from '/assets/rickmorty1.jpg'
+import img2 from '/assets/rickmorty2.jpg'
+import img3 from '/assets/rickmorty3.jpg'
+import img4 from '/assets/rickmorty4.jpg'
+import img5 from '/assets/rickmorty5.jpg'
+import img6 from '/assets/rickmorty6.jpg'
+
 function App() {
-  const [location, setLocation] = useState()
-  const getRandomLocation = () => {
-    return Math.floor(Math.random() * (126 - 1) + 1)
+  const [location, setLocation] = useState(null)
+  const [numberLocation, setNumberLocation] = useState(Math.floor(Math.random() * (126 - 1) + 1))
+  const [residents, setResidents] = useState([])
+
+  const images = [img1, img2, img3, img4, img5, img6]
+  const image = images[Math.floor(Math.random() * 6)]
+
+  useEffect(() => {
+    const URL = `https://rickandmortyapi.com/api/location/${numberLocation}`
+    axios.get(URL)
+      .then(res => {
+        setLocation(res.data)
+        setResidents(res.data.residents)
+      })
+      .catch(err => console.log(err))
+  }, [numberLocation])
+
+  const handleOnChange = (searchData) => {
+    if (searchData === '') {
+      setNumberLocation(Math.floor(Math.random() * (126 - 1) + 1))
+    } else {
+      setNumberLocation(searchData)
+    }
   }
-  let loc = useFetch(`https://rickandmortyapi.com/api/location/${getRandomLocation()}`)
-  console.log(loc)
+
   return (
     <AppContainer>
-      <div>
-        <HeaderImg />
-      </div>
+      <HeaderContainer>
+        <HeaderImg image={image} />
+        <Search onSearchChange={handleOnChange} />
+      </HeaderContainer>
       <LocationSection>
-        {loc && <Location location={loc} />}
+        {location && <Location location={location} />}
       </LocationSection>
-      <CardSection>
-        {
-          loc?.residents.map(url => (
-            <ResidentCard key={url} url={url} />
-          ))
-        }
-      </CardSection>
+      {residents && <CardSection residents={residents} />}
     </AppContainer>
   )
 }
@@ -36,7 +60,15 @@ const AppContainer = styled.div`
   align-items: center;
   flex-direction: column;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 30px auto;
+  background: rgb(31, 44, 63);
+`
+
+const HeaderContainer = styled.div`
+  min-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 `
 
 const LocationSection = styled.section`
@@ -47,12 +79,7 @@ const LocationSection = styled.section`
   justify-content: center;
   margin: 30px 0;
 `
-const CardSection = styled.section`
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-`
+
 
 
 export default App

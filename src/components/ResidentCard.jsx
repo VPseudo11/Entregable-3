@@ -1,16 +1,14 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import { CardContainer, CircleStatus, DetailsContainer, DetailsItem, ImgContainer, NameCharacter, StatusDiv, StatusInfo } from '../styles/CardStyles'
+import { CardContainer, CircleStatus, DetailsContainer, DetailsItem, ImgCard, ImgContainer, NameCharacter, StatusDiv, StatusInfo } from '../styles/CardStyles'
 
 const ResidentCard = ({ url }) => {
     const id = url.split('/')
     let character = useFetch(`https://rickandmortyapi.com/api/character/${id[id.length - 1]}`)
-    const StatusTheme = character?.status
-    console.log(character);
     return (
         <CardContainer>
             <ImgContainer>
-                <img src={character?.image} alt="" />
+                <ImgCard src={character?.image} alt="" />
                 <StatusDiv >
                     <CircleStatus status={character?.status}></CircleStatus>
                     <StatusInfo>{character?.status}</StatusInfo>

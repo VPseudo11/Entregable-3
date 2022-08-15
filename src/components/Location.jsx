@@ -9,15 +9,15 @@ const Location = ({ location }) => {
             </TitleContainer>
             <DetailsContainer>
                 <DetailsItem>
-                    <label>Type:</label>
+                    <label>Type: </label>
                     <label>{location.type}</label>
                 </DetailsItem>
                 <DetailsItem>
-                    <label>Dimension:</label>
+                    <label>Dimension: </label>
                     <label>{location.dimension}</label>
                 </DetailsItem>
                 <DetailsItem>
-                    <label>Population:</label>
+                    <label>Population: </label>
                     <label>{location.residents.length}</label>
                 </DetailsItem>
             </DetailsContainer>
@@ -56,15 +56,15 @@ const DetailsContainer = styled.div`
     row-gap: 0;
     column-gap: 15px;
     flex: 1 1;
-    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto));;
     margin: 15px 0;
 `
 //grid-template-columns: repeat(auto-fit, minmax(250px, auto));
 export const DetailsItem = styled.div`
     display: flex;
     height: 30px;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     color: var(--color-14);
     padding: 0 30px;
 `
